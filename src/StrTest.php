@@ -1,28 +1,24 @@
 <?php
+
 namespace Strings;
-use PHPUnit/Framework/TestCase;
+use PHPUnit\Framework\TestCase;
 
 class StrTest extends TestCase
 {
-    public function testExo1()
+    public function TestExo1()
     {
-        $string = (string) Str::on(my_string)
+        $string = (string) Str::on('my_string')
             ->replace('_', ' ')
             ->ucwords()
             ->replace(' ', '')
             ->lcfirst();
-
-        $this->assertSame(expected: 'myString', $string);
+        $this->assertSame( 'myString', $string);
     }
-    public function testExo2()
+    public function TestExo2()
     {
-        $this->assertTrue(conditions: Str::camelCase('my_string') === 'myString');
-        $this->assertTrue(conditions: Str::camelCase('my_string') === 'myString');
-        $this->assertTrue(conditions: Str::camelCase('my_string') === 'myString');
-        $this->assertTrue(conditions: Str::camelCase('my_string') === 'myString');
-        $this->assertTrue(conditions: Str::camelCase('my_string') === 'myString');
-
-
+        Str::on('my_string')->camelCase()->toString() === 'myString';
+        $this->assertSame( 'myString', $string);
 
     }
 }
+
