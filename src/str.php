@@ -99,6 +99,15 @@ class Str
     {
         return $this -> slugCase();
     }
+    public  function studlyCase()
+    {
+        return $this ->camelCase()
+            ->ucwords();
+    }
+    public function titleCase()
+    {
+        return $this -> studlyCase();
+    }
     public function __get($name)
     {
         $method = (string) Str::on($name)->lcfirst();
