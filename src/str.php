@@ -10,7 +10,7 @@ class Str
     }
     public function __construct(string $string)
     {
-        return $this-> string = $string;
+        $this-> string = $string;
     }
     public function ucwords()
     {
@@ -24,12 +24,45 @@ class Str
     }
     public function __toString()
     {
-        return $this->string;
+        return $this->toString();
     }
     public function lcfirst()
     {
         $this->string= lcfirst($this->string);
         return $this;
     }
+    public function toString()
+    {
+        return $this->string;
+    }
+    public  function strtoLower(){
+        $str = strtolower($this->string);
+        return new self($str);
+    }
+    public function checkIf($string)
+    {
+        return new self($string);
+    }
+    public function camelCase()
+    {
+        if (preg_match("/[-,_,]+/", $this->string) === 1){
+            return $this
+                ->strtolower()
+                ->replace('_', ' ')
+                ->replace('_', ' ')
+                ->ucwords()
+                ->replace(' ', '')
+                ->lcfirst();
 
+        }
+        else{
+            return $this;
+        }
+
+    }
+    public static function __callStatic($name, $arguments)
+    {
+        $method = (string) Str::on($name)->replace('to', '')->lcfirst();
+        return (string) Str::on($arguments[0])->{$method}();
+    }
 }
