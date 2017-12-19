@@ -5,6 +5,7 @@ use PHPUnit\Framework\TestCase;
 
 class StrTest extends TestCase
 {
+
     public function testExo1()
     {
         $string = (string)Str::on('my_string')
@@ -61,5 +62,22 @@ class StrTest extends TestCase
         $this->assertSame('my_string', $str);
 
     }
+    public function TestExo4()
+    {
+        $str = Str::toSlugCase('my_string');
+        $this->assertSame('my-string', $str);
 
+        $str = Str::toSlugCase('myString');
+        $this->assertSame('my-string', $str);
+
+        $str = Str::toSlugCase('my-string');
+        $this->assertSame('my-string', $str, -1);
+
+        $str = Str::toSlugCase('my string');
+        $this->assertSame('my-string', $str);
+
+        $str = Str::toSlugCase('My String');
+        $this->assertSame('my-string', $str);
+
+    }
 }

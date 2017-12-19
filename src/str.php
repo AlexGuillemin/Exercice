@@ -80,6 +80,25 @@ class Str
             return $this ->strtolower();
         }
     }
+
+    public function slugCase()
+    {
+        if (preg_match("/[-,_, ]+/", $this->string) === 1){
+            return $this
+                ->replace('-', ' ')
+                ->ucwords()
+                ->replace(' ', '_')
+                ->strtoLower();
+        }else{
+            $pattern ="/(.)(?=[A-Z]/";
+            $this->string = preg_replace($pattern,'$1_', $this->string);
+            return $this ->strtolower();
+        }
+    }
+    public function kebabCase()
+    {
+        return $this -> slugCase();
+    }
     public function __get($name)
     {
         $method = (string) Str::on($name)->lcfirst();
