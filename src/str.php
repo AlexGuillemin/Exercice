@@ -65,4 +65,30 @@ class Str
         $method = (string) Str::on($name)->replace('to', '')->lcfirst();
         return (string) Str::on($arguments[0])->{$method}();
     }
+
+    public function snakeCase()
+    {
+        if (preg_match("/[-,_, ]+/", $this->string) === 1){
+            return $this
+                ->replace('-', ' ')
+                ->ucwords()
+                ->replace(' ', '_')
+                ->strtoLower();
+    }else{
+            $pattern ="/(.)(?=[A-Z]/";
+            $this->string = preg_replace($pattern,'$1_', $this->string);
+            return $this ->strtolower();
+        }
+    }
+    public function __get($name)
+    {
+        $method = (string) Str::on($name)->lcfirst();
+        $str = $this->{$method}()->toString();
+        return $str;
+    }
+    public function __invoke()
+    {
+        $str = $this->toString();
+        return $str;
+    }
 }

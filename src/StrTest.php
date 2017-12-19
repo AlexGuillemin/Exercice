@@ -5,7 +5,7 @@ use PHPUnit\Framework\TestCase;
 
 class StrTest extends TestCase
 {
-    public function TestExo1()
+    public function testExo1()
     {
         $string = (string)Str::on('my_string')
             ->replace('_', ' ')
@@ -26,7 +26,7 @@ class StrTest extends TestCase
         $this->assertSame('myString', $str);
     }
 
-    public function TestExo25()
+    public function testExo25()
     {
         $str = Str::toCamelCase('my_string');
         $this->assertSame('myString', $str);
@@ -43,4 +43,23 @@ class StrTest extends TestCase
         $str = Str::toCamelCase('My String');
         $this->assertSame('myString', $str);
     }
+    public function testExo3()
+    {
+        $str = Str::toSnakeCase('my_string');
+        $this->assertSame('my_string', $str);
+
+       $str = Str::toSnakeCase('myString');
+       $this->assertSame('my_string', $str);
+
+        $str = Str::toSnakeCase('my-string');
+        $this->assertSame('my_string', $str, -1);
+
+        $str = Str::toSnakeCase('my string');
+        $this->assertSame('my_string', $str);
+
+        $str = Str::toSnakeCase('My String');
+        $this->assertSame('my_string', $str);
+
+    }
+
 }
